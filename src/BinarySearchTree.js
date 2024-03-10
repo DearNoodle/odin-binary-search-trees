@@ -5,15 +5,11 @@ import Stack from "./Stack";
 class BinarySearchTree {
   constructor(arr) {
     arr = [...new Set(arr)];
-    this.originalArr = arr;
-    this.balanceTreeCreation = false;
+    arr = arr.sort((a, b) => a - b);
     this.root = this.buildTree(arr);
   }
 
   buildTree(arr) {
-    if (this.balanceTreeCreation) {
-      arr = arr.sort((a, b) => a - b);
-    }
     if (arr.length === 0) {
       return null;
     }
@@ -228,8 +224,9 @@ class BinarySearchTree {
   }
 
   rebalance() {
-    this.balanceTreeCreation = true;
-    this.buildTree(this.originalArr);
+    let arr = [];
+    this.inOrder((a) => arr.push(a.value));
+    this.root = this.buildTree(arr);
   }
 }
 

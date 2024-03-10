@@ -13,7 +13,10 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-const log = (a) => console.log(a.value);
+let list = [];
+const listPush = (a) => {
+  list.push(a.value);
+};
 
 let arr = [];
 for (let i = 0; i < 10; i++) {
@@ -25,27 +28,44 @@ for (let i = 0; i < 10; i++) {
 let tree = new BinarySearchTree(arr);
 prettyPrint(tree.root);
 console.log(tree.isBalanced());
-tree.levelOrder(log);
-console.log("-");
-tree.inOrder(log);
-console.log("-");
-tree.preOrder(log);
-console.log("-");
-tree.postOrder(log);
-console.log("-");
+
+list = [];
+tree.levelOrder(listPush);
+console.log(list);
+list = [];
+tree.inOrder(listPush);
+console.log(list);
+list = [];
+tree.preOrder(listPush);
+console.log(list);
+list = [];
+tree.postOrder(listPush);
+console.log(list);
+
 tree.insert(101);
 tree.insert(123);
 tree.insert(169);
 prettyPrint(tree.root);
+
 console.log(tree.isBalanced());
-tree.levelOrder(log);
-console.log("-");
-tree.inOrder(log);
-console.log("-");
-tree.preOrder(log);
-console.log("-");
-tree.postOrder(log);
-console.log("-");
+
+tree.rebalance();
+prettyPrint(tree.root);
+
+console.log(tree.isBalanced());
+
+list = [];
+tree.levelOrder(listPush);
+console.log(list);
+list = [];
+tree.inOrder(listPush);
+console.log(list);
+list = [];
+tree.preOrder(listPush);
+console.log(list);
+list = [];
+tree.postOrder(listPush);
+console.log(list);
 
 // prettyPrint(tree.find(67));
 // tree.deleteItem(67);
